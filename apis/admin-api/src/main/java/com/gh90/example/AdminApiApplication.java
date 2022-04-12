@@ -1,4 +1,4 @@
-package com.gh90.example.api;
+package com.gh90.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
