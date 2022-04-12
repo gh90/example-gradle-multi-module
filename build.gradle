@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        springBootVersion = '2.5.1'
+        dependencyManagementVersion = '1.0.11.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+    }
+}
+
+subprojects {
+    group 'com.gh90.example'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+}
+project(':apis:admin-api') {
+    dependencies {
+        compile project(':domains:product-domain')
+        compile project(':domains:user-domain')
+    }
+}
+
+project(':apis:seller-api') {
+    dependencies {
+        compile project(':domains:user-domain')
+    }
+}
